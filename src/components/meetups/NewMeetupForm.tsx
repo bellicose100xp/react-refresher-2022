@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import Card from '../ui/Card';
 
-import { MeetupData } from "../types/Meetup";
+import { MeetupDataNoId } from "../../types/Meetup";
 
 import styles from './NewMeetupForm.module.css';
 
 interface NewMeetupFormProps {
-    onAddMeetup: (meetupData: MeetupData) => void;
+    onAddMeetup: (meetupData: MeetupDataNoId) => void;
 }
 
 const NewMeetupForm: React.FC<NewMeetupFormProps> = (props) => {
@@ -26,7 +26,7 @@ const NewMeetupForm: React.FC<NewMeetupFormProps> = (props) => {
             descriptionInputRef.current as HTMLTextAreaElement
         ).value;
 
-        const meetupData: MeetupData = {
+        const meetupData: MeetupDataNoId = {
             title: enteredTitle,
             image: enteredImage,
             address: enteredAddress,

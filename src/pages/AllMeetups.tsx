@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import MeetupList from '../components/meetups/MeetupList';
-import { MeetupData, FirebaseData } from '../components/types/Meetup';
+import { MeetupData, FirebaseData } from '../types/Meetup';
 
 // export interface DummyMeetupData {
 //     id: string;
@@ -38,9 +38,18 @@ const AllMeetupsPage = (): JSX.Element => {
         fetch(`${firebase_url}/meetups.json`)
             .then((response) => response.json())
             .then((data: FirebaseData) => {
-                setMeetupDataArray(() => [
-                    ...Object.values(data), // values of data are type MeetupData
-                ]);
+                const meetups: MeetupData[] = [];
+
+                for (let key in data) {
+                    const meetup = {
+                        id: key,
+                        ...data[key],
+                    };
+
+                    meetups.push(meetup);
+                }
+                
+                setMeetupDataArray(meetups);
                 setIsLoading(false);
             })
             .catch((err) => console.log(err));
