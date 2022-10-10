@@ -15,21 +15,20 @@
 // export default App;
 
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/layout/MainNavigation';
 import AllMeetupsPage from './pages/AllMeetups';
 import NewMeetupPage from './pages/NewMeetup';
 import FavoritesPage from './pages/Favorites';
+import Layout from "./components/layout/Layout";
 
-const App = () => {
+const App: React.FC = () => {
     return (
-        <>
-            <Navbar />
+        <Layout>
             <Routes>
                 <Route path="/" element={<AllMeetupsPage />} />
                 <Route path="/new-meetup" element={<NewMeetupPage />} />
                 <Route path="/favorites" element={<FavoritesPage />} />
             </Routes>
-        </>
+        </Layout>
     );
 };
 

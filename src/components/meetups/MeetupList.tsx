@@ -1,15 +1,16 @@
-import { DummyMeetupData } from '../../pages/AllMeetups';
+import { MeetupData } from '../types/Meetup';
+// import { DummyMeetupData } from '../../pages/AllMeetups';
 import MeetupItem from "./MeetupItem";
 import styles from "./MeetupList.module.css";
 
 interface MeetupListProps {
-    meetups: DummyMeetupData[]
+    meetups: MeetupData[]
 }
 
-const MeetupList = (props: MeetupListProps): JSX.Element => {
+const MeetupList: React.FC<MeetupListProps> = (props): JSX.Element => {
     return (
         <ul className={styles.list}>
-            {props.meetups.map(meetup => <MeetupItem key={meetup.id} {...meetup} />)}
+            {props.meetups.map(meetup => <MeetupItem key={meetup.title} {...meetup} />)}
         </ul>
     );
 };

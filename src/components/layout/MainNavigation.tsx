@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styles from './MainNavigation.module.css';
 
-const Navbar = () => {
+const Navbar: React.FC = (): JSX.Element => {
     return (
         <header className={styles.header}>
-            <h1 className='meetup-nav-main-text'>React Meetups</h1>
+            <div className={styles.logo}>React Meetups</div>
             <nav>
                 <ul>
                     <li>
                         <NavLink to="/" className="nav-link" end>
-                            Some NavLink
+                            All Meetups
                         </NavLink>
                     </li>
                     <li>
@@ -20,7 +20,7 @@ const Navbar = () => {
 
                     <li>
                         <NavLink to="/favorites" className="nav-link">
-                            Favorite
+                            My Favorites
                         </NavLink>
                     </li>
                 </ul>

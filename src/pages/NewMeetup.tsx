@@ -1,8 +1,34 @@
-const NewMeetupPage = () => {
+import { useNavigate } from 'react-router-dom';
+
+import NewMeetupForm from '../components/meetups/NewMeetupForm';
+import { MeetupData } from '../components/types/Meetup';
+
+const NewMeetupPage: React.FC = () => {
+    let navigate = useNavigate();
+
+    const onAddMeetupHandler = (meetupData: MeetupData) => {
+        const firebase_url = process.env.REACT_APP_FIREBASE_URL as string;
+
+        fetch(`${firebase_url}/meetups.json`, {
+            method: 'POST',
+            body: JSON.stringify(meetupData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                navigate('/', { replace: true });
+                console.log(data);
+            })
+            .catch((err) => console.log(err));
+    };
+
     return (
-        <div>
-            New Meetup Page
-        </div>
+        <>
+            <h1>New Meetup Page</h1>
+            <NewMeetupForm onAddMeetup={onAddMeetupHandler} />
+        </>
     );
 };
 
